@@ -1,5 +1,6 @@
 package generator
 
+import java.time.LocalDate
 import java.util.Date
 
 object Model {
@@ -8,13 +9,14 @@ object Model {
                     userId: String,
                     screenName: String,
                     userUrl: String,
+                    mailboxId: String,
                     description: String,
-                    postCard: String,
                     friendsCard: String,
                     personalCard: String,
-                    partnerCard: String,
-                    countersCard: String,
-                    photosCard: String)
+                    partnerId: String,
+                    countersCard: String
+                   )
+
 
     case class PhotosGallery(label: String = "photosGallery", galleryId: String)
 
@@ -29,17 +31,9 @@ object Model {
 
     case class MailBox(label: String = "mailbox", mailboxId: String)
 
-    case class Message(label: String = "post",
-                       postId: String,
-                       authorId: String,
-                       text: String,
-                       createdDate: Int,
-                       weight: Int,
-                       height: Int
-                   )
+    case class Message(label: String = "post", messageId: String, text: String, createdDate: LocalDate)
 
-
-    case class FriendsCard(label: String = "friendsCard", userId: String, friendsIds: List[String])
+    case class FriendsCard(label: String = "friendsCard", userId: String, friendsIds: List[String], cardId: String)
 
     case class PersonalInformation(label: String = "personalCard",
                                    personalCardId: String,
@@ -54,7 +48,6 @@ object Model {
 
     case class AddressCard(label: String = "addressCard",
                            addressId: String,
-                           userId: String,
                            country: String,
                            state: String,
                            city: String,
@@ -71,13 +64,17 @@ object Model {
 
     case class HasPhotosGallery(label: String = "hasPhotosGallery", from: Id, to: Id)
 
-    case class PhotoInGallery(label: String = "photoInGallery",  from: Id, to: Id)
-    
-    case class HasMailbox(label: String = "hasMailBox", from: Id, to: Id)
+    case class PhotoInGallery(label: String = "photoInGallery", from: Id, to: Id)
+
+    case class MessageInMailBox(label: String = "hasMailBox", from: Id, to: Id)
+
+    case class HasMailBox(label: String = "messageInMailBox", from: Id, to: Id)
 
     case class HasPersonalInformation(label: String = "hasContacts", from: Id, to: Card)
 
     case class HasAddress(label: String = "hasAddress", from: Id, to: Card)
+
+    case class MessageFromTo(label: String = "messageFromTo", from: Id, to: Id)
   }
 }
 

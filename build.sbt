@@ -16,3 +16,4 @@ libraryDependencies ++= Seq(
 ).map(_ % circeVersion)
 
 libraryDependencies += "com.github.javafaker" % "javafaker" % "1.0.2"
+libraryDependencies += "com.google.code.gson" % "gson" % "2.9.0"
